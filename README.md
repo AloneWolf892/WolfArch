@@ -2,7 +2,7 @@
 Just a script to automatically install my archlinux enviroment, this will mount selected partitions and install my things with some configs, it's not much but it's mine :D
 
 ## Recommendations
-Select your keyboard layout to use.
+Select your keyboard layout to use, archinstaller by default has the us layout selected.
 In my case i have a spanish keyboard so I use
 ```zsh
 loadkeys es
