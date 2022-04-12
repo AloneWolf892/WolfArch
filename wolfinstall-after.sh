@@ -31,9 +31,9 @@ echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
 
 cd $LOCAL_HOME
 
-git clone https://aur.archlinux.org/paru.git
-chown -R $LOCAL_USERNAME paru
-cd paru
+git clone https://aur.archlinux.org/paru-bin.git
+chown -R $LOCAL_USERNAME paru-bin
+cd paru-bin
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
 
