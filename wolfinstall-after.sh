@@ -59,12 +59,12 @@ systemctl enable libvirtd
 
 usermod -aG libvirt $LOCAL_USERNAME
 
-mkdir Downloads
+sudo -u $LOCAL_USERNAME mkdir Downloads
 cd Downloads
-mkdir CaskaydiaCove
+sudo -u $LOCAL_USERNAME mkdir CaskaydiaCove
 cd CaskaydiaCove
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
-unzip CascadiaCode.zip
+sudo -u $LOCAL_USERNAME wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
+sudo -u $LOCAL_USERNAME unzip CascadiaCode.zip
 
 mkdir /usr/local/share/fonts
 mkdir /usr/local/share/fonts/ttf
@@ -80,15 +80,15 @@ sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chro
 
 systemctl enable gdm.service
 
-mkdir $LOCAL_HOME/.config
-mkdir $LOCAL_HOME/.config/kitty
+sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config
+sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/kitty
 
-echo "font_family               CaskaydiaCove NF" >> $LOCAL_HOME/.config/kitty/kitty.conf
-echo "font_size                 14              " >> $LOCAL_HOME/.config/kitty/kitty.conf
-echo "cursor                    #00ffcc         " >> $LOCAL_HOME/.config/kitty/kitty.conf
-echo "cursor_shape              block           " >> $LOCAL_HOME/.config/kitty/kitty.conf
-echo "hide_window_decorations   yes             " >> $LOCAL_HOME/.config/kitty/kitty.conf
-echo "shell_integration         no_cursor       " >> $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USERNAME echo "font_family               CaskaydiaCove NF" >> $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USERNAME echo "font_size                 14              " >> $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USERNAME echo "cursor                    #00ffcc         " >> $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USERNAME echo "cursor_shape              block           " >> $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USERNAME echo "hide_window_decorations   yes             " >> $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USERNAME echo "shell_integration         no-cursor       " >> $LOCAL_HOME/.config/kitty/kitty.conf
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
