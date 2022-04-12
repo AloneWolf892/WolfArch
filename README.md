@@ -4,7 +4,7 @@ Just a script to automatically install my archlinux enviroment, this will mount 
 ## Recommendations
 Select your keyboard layout to use, archinstaller by default has the us layout selected.
 In my case i have a spanish keyboard so I use
-```zsh
+```sh
 loadkeys es
 ```
 
@@ -18,17 +18,17 @@ loadkeys es
     3. SWAP
 
 3. Getting the script: First we need to install git by
-```zsh
+```sh
 pacman -Sy git
 ```
 And then we do the following
-```zsh
+```sh
 git clone https://github.com/AloneWolf892/WolfArch
 ```
 
 4. Running the script: For this we just do
-```zsh
-. ./WolfArch/wolfinstall.zsh
+```sh
+. ./WolfArch/wolfinstall-before.sh
 ```
 
 ## License
