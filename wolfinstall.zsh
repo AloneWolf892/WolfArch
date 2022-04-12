@@ -50,3 +50,4 @@ elif [[ $proctype -eq "amd" ]]
 then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode
 elif [[ $proctype -eq "virtualmachine" ]]
 then pacstrap /mnt base linux linux-firmware vim nano git
+fi
