@@ -1,5 +1,5 @@
-LOCAL_USERNAME=akira
-LOCAL_PASSWORD=akira
+LOCAL_USERNAME="akira"
+LOCAL_PASSWORD="akira"
 LOCAL_HOME=/home/$LOCAL_USERNAME
 
 reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
