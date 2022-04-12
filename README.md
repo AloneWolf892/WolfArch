@@ -1,11 +1,19 @@
 ## Summary
 Just a script to automatically install my archlinux enviroment, this will mount selected partitions and install my things with some configs, it's not much but it's mine :D
+
+## Recommendations
+Select your keyboard layout to use.
+In my case i have a spanish keyboard so I use
+```zsh
+loadkeys es
+```
+
 ## Instalation Requirements
 
 1. Verify internet connection: if on wifi you can use [iwctl](https://wiki.archlinux.org/title/Iwd#iwctl) to connect to a wireless network.
 
-2. Partition Ecosystem: This will install on GPT disks and the partitions must be already present.
-    1. /boot/efi 
+2. Partition Ecosystem: This will install on GPT disks and the partitions must be already present. It will let you select which partitions to use for the mountpoints
+    1. /boot/efi
     2. /
     3. SWAP
 
