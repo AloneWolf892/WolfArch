@@ -55,10 +55,10 @@ elif [[ $proctype -eq "virtualmachine" ]]
 then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel rust
 fi
 
+arch-chroot /mnt /bin/bash swapon /dev/$swappartition
+
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp WolfArch /mnt/root/ -r
-
-arch-chroot /mnt /bin/bash swapon /dev/$swappartition
 
 arch-chroot /mnt /bin/bash $HOME/WolfArch/wolfinstall-after.sh
