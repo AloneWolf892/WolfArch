@@ -55,7 +55,7 @@ elif [[ $proctype -eq "virtualmachine" ]]
 then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel rust zsh zsh-syntax-highlighting zsh-autosuggestions
 fi
 
-arch-chroot /mnt /bin/zsh mkswap /dev/$swappartition
+arch-chroot /mnt /bin/zsh swapon /dev/$swappartition
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
