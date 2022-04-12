@@ -35,3 +35,17 @@ do
         echo "$swappartition will be used as the swap partition"
         break
 done
+
+PS3="Select your processor brand: "
+COLUMNS=12
+select proctype in amd intel virtualmachine
+do
+    echo "ucode for $proctype will be installed"
+done
+
+if [[ $proctype -eq "intel" ]]
+then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode
+elif [[ $proctype -eq "amd" ]]
+then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode
+elif [[ $proctype -eq "virtualmachine" ]]
+then pacstrap /mnt base linux linux-firmware vim nano git
