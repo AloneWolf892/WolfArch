@@ -44,6 +44,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 mkdir Downloads
 cd Downloads
-curl -O https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
+mkdir CaskaydiaCove
+cd CaskaydiaCove
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
 unzip CascadiaCode.zip
-cd CascadiaCode
