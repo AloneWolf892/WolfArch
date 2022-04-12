@@ -38,10 +38,10 @@ cd $LOCAL_HOME
 git clone https://aur.archlinux.org/paru-bin.git
 chown -R $LOCAL_USERNAME paru-bin
 cd paru-bin
-sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
+echo $LOCAL_PASSWORD | sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
 
-sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu --noconfirm
+echo $LOCAL_PASSWORD | sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu --noconfirm
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCHLINUX
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -76,4 +76,7 @@ chmod 555 /usr/local/share/fonts/ttf/CaskaydiaCove
 chmod 444 /usr/local/share/fonts/ttf/CaskaydiaCove/*
 fc-cache
 
-sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin
+echo $LOCAL_PASSWORD | sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin kitty
+
+systemctl enable gdm.service
+
