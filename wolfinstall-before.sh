@@ -35,6 +35,7 @@ COLUMNS=12
 select swappartition in $(lsblk -n --output NAME -l)
 do
         echo "$swappartition will be used as the swap partition"
+        mkswap /dev/$swappartition
         break
 done
 
@@ -57,5 +58,7 @@ fi
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp WolfArch /mnt/root/ -r
+
+arch-chroot /mnt /bin/bash swapon /dev/$swappartition
 
 arch-chroot /mnt /bin/bash $HOME/WolfArch/wolfinstall-after.sh
