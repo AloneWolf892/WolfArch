@@ -28,7 +28,7 @@ useradd -m $LOCAL_USERNAME
 echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
 
-git clone https://aur.archlinux.org/paru.git
+sudo -u $LOCAL_USERNAME git clone https://aur.archlinux.org/paru.git
 cd paru
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
