@@ -1,5 +1,6 @@
 LOCAL_USERNAME=akira
 LOCAL_PASSWORD=akira
+LOCAL_HOME=/home/$LOCAL_USERNAME
 
 reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -28,7 +29,10 @@ useradd -m $LOCAL_USERNAME
 echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
 
-sudo -u $LOCAL_USERNAME git clone https://aur.archlinux.org/paru.git
+cd $LOCAL_HOME
+
+git clone https://aur.archlinux.org/paru.git
+chown -R $LOCAL_USERNAME paru
 cd paru
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
