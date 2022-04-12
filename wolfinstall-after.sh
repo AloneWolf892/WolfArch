@@ -37,7 +37,7 @@ cd paru-bin
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
 
-sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync --noconfirm
+sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ebtables iptables libguestfs --noconfirm
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCHLINUX
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -45,6 +45,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 sed -i "63s/.//" /etc/default/grub
 
 grub-mkconfig -o /boot/grub/grub.cfg
+
+
 
 mkdir Downloads
 cd Downloads
@@ -62,3 +64,4 @@ cp /home/akira/Downloads/CaskaydiaCove /usr/local/share/fonts/ttf/ -r
 chmod 555 /usr/local/share/fonts/ttf/CaskaydiaCove
 chmod 444 /usr/local/share/fonts/ttf/CaskaydiaCove/*
 fc-cache
+
