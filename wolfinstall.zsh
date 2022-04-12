@@ -18,6 +18,7 @@ do
 done
 
 PS3="Select the boot partition: "
+COLUMNS=12
 select bootpartition in $(lsblk -n --output NAME -l)
 do
         echo "$bootpartition will be used as the boot/efi partition"
@@ -28,6 +29,7 @@ do
 done
 
 PS3="Select the swap partition: "
+COLUMNS=12
 select swappartition in $(lsblk -n --output NAME -l)
 do
         echo "$swappartition will be used as the swap partition"
