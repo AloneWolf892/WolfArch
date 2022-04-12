@@ -76,7 +76,7 @@ chmod 555 /usr/local/share/fonts/ttf/CaskaydiaCove
 chmod 444 /usr/local/share/fonts/ttf/CaskaydiaCove/*
 fc-cache
 
-sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin kitty --noconfirm
+sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin kitty neofetch btop --noconfirm
 
 systemctl enable gdm.service
 
