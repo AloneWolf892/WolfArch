@@ -78,6 +78,11 @@ fc-cache
 
 sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin kitty --noconfirm
 
+systemctl enable gdm.service
+
+mkdir $LOCAL_HOME/.config
+mkdir $LOCAL_HOME/.config/kitty
+
 echo "font_family               CaskaydiaCove NF" >> $LOCAL_HOME/.config/kitty/kitty.conf
 echo "font_size                 14              " >> $LOCAL_HOME/.config/kitty/kitty.conf
 echo "cursor                    #00ffcc         " >> $LOCAL_HOME/.config/kitty/kitty.conf
