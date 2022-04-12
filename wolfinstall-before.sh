@@ -58,4 +58,4 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 cp WolfArch /mnt/root/ -r
 
-arch-chroot /mnt $HOME/WolfArch/wolfinstall-after.sh
+arch-chroot /mnt /bin/bash $HOME/WolfArch/wolfinstall-after.sh
