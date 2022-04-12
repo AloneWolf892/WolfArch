@@ -48,17 +48,17 @@ do
 done
 
 if [[ $proctype -eq "intel" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode reflector base-devel rust
+then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode reflector base-devel rust zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "amd" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode reflector base-devel rust
+then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode reflector base-devel rust zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "virtualmachine" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel rust
+then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel rust zsh zsh-syntax-highlighting zsh-autosuggestions
 fi
 
-arch-chroot /mnt /bin/bash swapon /dev/$swappartition
+arch-chroot /mnt /bin/zsh swapon /dev/$swappartition
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp WolfArch /mnt/root/ -r
 
-arch-chroot /mnt /bin/bash $HOME/WolfArch/wolfinstall-after.sh
+arch-chroot /mnt /bin/zsh $HOME/WolfArch/wolfinstall-after.sh
