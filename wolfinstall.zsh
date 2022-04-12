@@ -41,6 +41,7 @@ COLUMNS=12
 select proctype in amd intel virtualmachine
 do
     echo "ucode for $proctype will be installed"
+    break
 done
 
 if [[ $proctype -eq "intel" ]]
