@@ -22,10 +22,10 @@ echo $HOSTNAME >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $HOSTNAME.localdomain   $HOSTNAME" >> /etc/hosts
-echo root:password | chpasswd
+echo root:$LOCAL_PASSWORD | chpasswd
 
 useradd -m $LOCAL_USERNAME
-echo $LOCAL_USERNAME:$PASSWORD | chpasswd
+echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 
 
 
