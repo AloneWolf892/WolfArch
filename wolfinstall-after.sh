@@ -1,5 +1,7 @@
-LOCAL_USERNAME="akira"
-LOCAL_PASSWORD="akira"
+echo "Input username"
+read LOCAL_USERNAME
+echo "Input password"
+read LOCAL_PASSWORD
 LOCAL_HOME=/home/$LOCAL_USERNAME
 
 reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
@@ -38,7 +40,7 @@ chown -R $LOCAL_USERNAME paru-bin
 cd paru-bin
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
-sudo -u $LOCAL_USERNAME paru -R iptables
+
 sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu --noconfirm
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCHLINUX
@@ -54,6 +56,8 @@ systemctl enable cups.service
 systemctl enable sshd
 systemctl enable reflector.timer
 systemctl enable libvirtd
+
+usermod -aG libvirt $LOCAL_USERNAME
 
 mkdir Downloads
 cd Downloads
