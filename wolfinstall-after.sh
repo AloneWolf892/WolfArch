@@ -7,6 +7,8 @@ reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime 
 hwclock --systohc
 
+timedatectl set-ntp true
+
 CPU_THREADS=$(getconf _NPROCESSORS_ONLN)
 sed -i "/^#ParallelDownloads/ c ParallelDownloads = $CPU_THREADS" /etc/pacman.conf
 sed -i "/^#Color/ c Color" /etc/pacman.conf
