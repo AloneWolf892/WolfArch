@@ -37,9 +37,13 @@ cd paru
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
 
-sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh google-chrome chrome-gnome-shell zip wget curl qemu qemu-arch-extra virt-manager bridge-utils rsync --noconfirm
+sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip wget curl rsync --noconfirm
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCHLINUX
+grub-mkconfig -o /boot/grub/grub.cfg
+
+sed -i "63s/.//" /etc/default/grub
+
 grub-mkconfig -o /boot/grub/grub.cfg
 
 mkdir Downloads
@@ -48,3 +52,13 @@ mkdir CaskaydiaCove
 cd CaskaydiaCove
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
 unzip CascadiaCode.zip
+
+mkdir /usr/local/share/fonts
+mkdir /usr/local/share/fonts/ttf
+mkdir /usr/local/share/fonts/ttf/CaskaydiaCove
+chmod 555 /usr/local/share/fonts/
+chmod 555 /usr/local/share/fonts/ttf/
+cp /home/akira/Downloads/CaskaydiaCove /usr/local/share/fonts/ttf/ -r
+chmod 555 /usr/local/share/fonts/ttf/CaskaydiaCove
+chmod 444 /usr/local/share/fonts/ttf/CaskaydiaCove/*
+fc-cache
