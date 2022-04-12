@@ -1,0 +1,1 @@
+Just a script to automatically install my archlinux enviroment
