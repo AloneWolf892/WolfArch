@@ -31,7 +31,7 @@ echo root:$LOCAL_PASSWORD | chpasswd
 
 useradd -m $LOCAL_USERNAME
 echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
-echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
+echo "$LOCAL_USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
 
 cd $LOCAL_HOME
 
@@ -76,4 +76,14 @@ chmod 555 /usr/local/share/fonts/ttf/CaskaydiaCove
 chmod 444 /usr/local/share/fonts/ttf/CaskaydiaCove/*
 fc-cache
 
-sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin
+sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin kitty --noconfirm
+
+echo "font_family               CaskaydiaCove NF" >> $LOCAL_HOME/.config/kitty/kitty.conf
+echo "font_size                 14              " >> $LOCAL_HOME/.config/kitty/kitty.conf
+echo "cursor                    #00ffcc         " >> $LOCAL_HOME/.config/kitty/kitty.conf
+echo "cursor_shape              block           " >> $LOCAL_HOME/.config/kitty/kitty.conf
+echo "hide_window_decorations   yes             " >> $LOCAL_HOME/.config/kitty/kitty.conf
+echo "shell_integration         no_cursor       " >> $LOCAL_HOME/.config/kitty/kitty.conf
+
+rm /etc/sudoers.d/$LOCAL_USERNAME
+echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
