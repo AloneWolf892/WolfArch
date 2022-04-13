@@ -70,14 +70,10 @@ cd CaskaydiaCove
 sudo -u $LOCAL_USERNAME wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
 sudo -u $LOCAL_USERNAME unzip CascadiaCode.zip
 
-mkdir /usr/local/share/fonts
-mkdir /usr/local/share/fonts/ttf
-mkdir /usr/local/share/fonts/ttf/CaskaydiaCove
-chmod 555 /usr/local/share/fonts/
-chmod 555 /usr/local/share/fonts/ttf/
-cp /home/akira/Downloads/CaskaydiaCove /usr/local/share/fonts/ttf/ -r
-chmod 555 /usr/local/share/fonts/ttf/CaskaydiaCove
-chmod 444 /usr/local/share/fonts/ttf/CaskaydiaCove/*
+mkdir -p $LOCAL_HOME/.local/share/fonts
+cp $LOCAL_HOME/Downloads/CaskaydiaCove $LOCAL_HOME/.local/share/fonts
+chown -R $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.local
+
 fc-cache
 
 sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin kitty neofetch btop --noconfirm
