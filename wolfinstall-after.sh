@@ -82,7 +82,7 @@ fc-cache
 
 sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord grub-customizer visual-studio-code-bin kitty neofetch btop --noconfirm
 
-systemctl enable gdm.service
+systemctl enable gdm.service --now
 
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/kitty
@@ -122,6 +122,13 @@ cd $LOCAL_HOME/Downloads
 sudo -u $LOCAL_USERNAME git clone https://github.com/xenlism/Grub-themes
 cd $LOCAL_HOME/Downloads/Grub-themes/xenlism-grub-arch-1080p/
 . ./install.sh
+
+sudo -U $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
+sudo -U $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
+
+systemctl restart gdm.service
+
+sudo -U $LOCAL_USERNAME gnome-extensions enable material-shell@papyelgringo
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
