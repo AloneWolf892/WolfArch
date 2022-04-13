@@ -71,7 +71,7 @@ sudo -u $LOCAL_USERNAME wget https://github.com/ryanoasis/nerd-fonts/releases/do
 sudo -u $LOCAL_USERNAME unzip CascadiaCode.zip
 
 mkdir -p $LOCAL_HOME/.local/share/fonts
-cp $LOCAL_HOME/Downloads/CaskaydiaCove $LOCAL_HOME/.local/share/fonts
+cp $LOCAL_HOME/Downloads/CaskaydiaCove/* $LOCAL_HOME/.local/share/fonts
 chown -R $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.local
 
 fc-cache
@@ -89,6 +89,7 @@ sudo -u $LOCAL_USERNAME echo "cursor                    #00ffcc         " >> $LO
 sudo -u $LOCAL_USERNAME echo "cursor_shape              block           " >> $LOCAL_HOME/.config/kitty/kitty.conf
 sudo -u $LOCAL_USERNAME echo "hide_window_decorations   yes             " >> $LOCAL_HOME/.config/kitty/kitty.conf
 sudo -u $LOCAL_USERNAME echo "shell_integration         no-cursor       " >> $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USERNAME echo "window_padding_width      10              " >> $LOCAL_HOME/.config/kitty/kitty.conf
 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
 
@@ -123,7 +124,8 @@ sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 
 echo "gnome-extensions enable material-shell@papyelgringo #Delete" >> /etc/zsh/zprofile
-echo "sed -i '/#Delete$/d' /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
+echo "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' #Delete" >> /etc/zsh/zprofile
+echo "sudo sed -i '/#Delete$/d' /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
