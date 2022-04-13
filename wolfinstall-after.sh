@@ -94,7 +94,29 @@ sudo -u $LOCAL_USERNAME echo "cursor_shape              block           " >> $LO
 sudo -u $LOCAL_USERNAME echo "hide_window_decorations   yes             " >> $LOCAL_HOME/.config/kitty/kitty.conf
 sudo -u $LOCAL_USERNAME echo "shell_integration         no-cursor       " >> $LOCAL_HOME/.config/kitty/kitty.conf
 
+chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
 
+sudo -u $LOCAL_USERNAME echo "# Lines configured by zsh-newuser-install                                                 " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "HISTFILE=~/.histfile                                                                      " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "HISTSIZE=6900                                                                             " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "SAVEHIST=6900                                                                             " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "bindkey -e                                                                                " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "# End of lines configured by zsh-newuser-install                                          " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "alias ll='ls -al --color'                                                                 " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "# The following lines were added by compinstall                                           " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "zstyle :compinstall filename '/home/akira.zshrc '                                         " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "                                                                                          " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh         " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh                 " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "                                                                                          " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "autoload -Uz compinit                                                                     " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "compinit                                                                                  " >> $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USERNAME echo "# End of lines added by compinstall                                                       " >> $LOCAL_HOME/.zshrc
+
+sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
+sudo -u $LOCAL_USERNAME echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> $LOCAL_HOME/.zshrc
+
+chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
