@@ -33,6 +33,8 @@ useradd -m $LOCAL_USERNAME
 echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 echo "$LOCAL_USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
 
+sed -i 's/bash/zsh/' /etc/passwd
+
 LOCAL_HOME=/home/$LOCAL_USERNAME
 
 cd $LOCAL_HOME
@@ -91,6 +93,8 @@ sudo -u $LOCAL_USERNAME echo "cursor                    #00ffcc         " >> $LO
 sudo -u $LOCAL_USERNAME echo "cursor_shape              block           " >> $LOCAL_HOME/.config/kitty/kitty.conf
 sudo -u $LOCAL_USERNAME echo "hide_window_decorations   yes             " >> $LOCAL_HOME/.config/kitty/kitty.conf
 sudo -u $LOCAL_USERNAME echo "shell_integration         no-cursor       " >> $LOCAL_HOME/.config/kitty/kitty.conf
+
+
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
