@@ -127,6 +127,6 @@ sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 echo "gnome-extensions enable material-shell@papyelgringo #Delete" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' #Delete" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' #Delete" >> /etc/zsh/zprofile
-echo "gsettings set org.gnome.desktop.input-sources sources '[('xkb'), 'es+winkeys']'" >> /etc/zsh/zprofile
+echo "gsettings set org.gnome.desktop.input-sources sources '[('xkb'), 'es+winkeys']' #Delete" >> /etc/zsh/zprofile
 echo "sudo sed -i '/#Delete$/d' /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
-echo 'sudo echo "$USER ALL=(ALL) ALL" > /etc/sudoers.d/$USER' >> /etc/zsh/zprofile
+echo 'sudo echo "$USER ALL=(ALL) ALL" > /etc/sudoers.d/$USER #Delete' >> /etc/zsh/zprofile
