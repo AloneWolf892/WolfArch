@@ -123,14 +123,11 @@ sudo -u $LOCAL_USERNAME git clone https://github.com/xenlism/Grub-themes
 cd $LOCAL_HOME/Downloads/Grub-themes/xenlism-grub-arch-1080p/
 . ./install.sh
 
-systemctl start gdm.service
-
 sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 
-systemctl restart gdm.service
-
-sudo -u $LOCAL_USERNAME gnome-extensions enable material-shell@papyelgringo
+echo "gnome-extensions enable material-shell@papyelgringo #Delete" >> /etc/zsh/zprofile
+echo "sed -i /#Delete$/d #Delete" >> /etc/zsh/zprofile
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
