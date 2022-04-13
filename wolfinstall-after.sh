@@ -118,5 +118,10 @@ sudo -u $LOCAL_USERNAME echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>
 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
 
+cd $LOCAL_HOME/Downloads
+sudo -u $LOCAL_USERNAME git clone https://github.com/xenlism/Grub-themes
+cd $LOCAL_HOME/Downloads/Grub-themes/xenlism-grub-arch-1080p/
+. ./install.sh
+
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
