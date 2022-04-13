@@ -20,6 +20,8 @@ sed -i "94s/.//" /etc/pacman.conf
 
 pacman -Syyy
 
+useradd -D -s /bin/zsh
+
 sed -i "178s/.//" /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
@@ -32,8 +34,6 @@ echo root:$LOCAL_PASSWORD | chpasswd
 useradd -m $LOCAL_USERNAME
 echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 echo "$LOCAL_USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
-
-sed -i 's/bash/zsh/' /etc/passwd
 
 LOCAL_HOME=/home/$LOCAL_USERNAME
 
