@@ -123,7 +123,7 @@ sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 
 echo "gnome-extensions enable material-shell@papyelgringo #Delete" >> /etc/zsh/zprofile
-echo "sed -i '/#Delete$/d' #Delete" >> /etc/zsh/zprofile
+echo "sed -i '/#Delete$/d' /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
