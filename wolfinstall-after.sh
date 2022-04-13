@@ -2,7 +2,8 @@ echo "Input username"
 read LOCAL_USERNAME
 echo "Input password"
 read LOCAL_PASSWORD
-LOCAL_HOME=/home/$LOCAL_USERNAME
+echo "Input Hostname"
+read LOCAL_HOSTNAME
 
 reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -22,16 +23,17 @@ pacman -Syyy
 sed -i "178s/.//" /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-HOSTNAME="ARCHTEST"
-echo $HOSTNAME >> /etc/hostname
+echo $LOCAL_HOSTNAME >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
-echo "127.0.1.1 $HOSTNAME.localdomain   $HOSTNAME" >> /etc/hosts
+echo "127.0.1.1 $LOCAL_HOSTNAME.localdomain   $LOCAL_HOSTNAME" >> /etc/hosts
 echo root:$LOCAL_PASSWORD | chpasswd
 
 useradd -m $LOCAL_USERNAME
 echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 echo "$LOCAL_USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
+
+LOCAL_HOME=/home/$LOCAL_USERNAME
 
 cd $LOCAL_HOME
 
@@ -41,7 +43,7 @@ cd paru-bin
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
 
-sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu --noconfirm
+sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu firewalld --noconfirm
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCHLINUX
 grub-mkconfig -o /boot/grub/grub.cfg
