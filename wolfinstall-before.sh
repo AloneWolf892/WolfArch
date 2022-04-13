@@ -60,3 +60,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp WolfArch /mnt/root/ -r
 
 arch-chroot /mnt /bin/zsh $HOME/WolfArch/wolfinstall-after.sh
+
+umount -a 
+reboot
