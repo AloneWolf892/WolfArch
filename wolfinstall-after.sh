@@ -123,6 +123,8 @@ sudo -u $LOCAL_USERNAME git clone https://github.com/xenlism/Grub-themes
 cd $LOCAL_HOME/Downloads/Grub-themes/xenlism-grub-arch-1080p/
 . ./install.sh
 
+systemctl start gdm.service
+
 sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
 
