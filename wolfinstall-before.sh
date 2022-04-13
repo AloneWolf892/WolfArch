@@ -36,6 +36,7 @@ select swappartition in $(lsblk -n --output NAME -l)
 do
         echo "$swappartition will be used as the swap partition"
         mkswap /dev/$swappartition
+        swapon /dev/$swappartition
         break
 done
 
