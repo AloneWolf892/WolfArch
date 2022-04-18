@@ -28,7 +28,7 @@ git clone https://github.com/AloneWolf892/WolfArch
 
 4. Running the script: For this we just do
 ```sh
-. ./WolfArch/wolfinstall-before.sh
+. ./WolfArch/wolfinstall-setup.sh
 ```
 
 ## License
