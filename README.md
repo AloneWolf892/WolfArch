@@ -12,6 +12,13 @@ loadkeys es
 
 1. Verify internet connection: if on wifi you can use [iwctl](https://wiki.archlinux.org/title/Iwd#iwctl) to connect to a wireless network.
 
+2. If you established the connection manually by some means. I recommend using
+```sh
+timedatectl set-ntp true
+```
+And wait till it outputs "[ OK ] Reached target Graphical Interface"
+Then you can hit enter and continue with the installation.
+
 2. Partition Ecosystem: This will install on GPT disks and the partitions must be already present. It will let you select which partitions to use for the mountpoints
     1. /boot/efi
     2. /
