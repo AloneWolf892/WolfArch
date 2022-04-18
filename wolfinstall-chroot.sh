@@ -2,6 +2,8 @@ chsh -s /bin/zsh root
 
 echo "Input username"
 read LOCAL_USERNAME
+echo "Input Full Name (Only for display at logon)"
+read LOCAL_FULLNAME
 echo "Input password"
 read LOCAL_PASSWORD
 echo "Input Hostname"
@@ -33,9 +35,13 @@ echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $LOCAL_HOSTNAME.localdomain   $LOCAL_HOSTNAME" >> /etc/hosts
 echo root:$LOCAL_PASSWORD | chpasswd
 
+sed -i "s/rwh/frwh/" /etc/login.defs
+
 useradd -m $LOCAL_USERNAME
 echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 echo "$LOCAL_USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
+
+sudo -u $LOCAL_USERNAME chfn -f $LOCAL_FULLNAME
 
 LOCAL_HOME=/home/$LOCAL_USERNAME
 
@@ -137,6 +143,8 @@ echo "sed -i \"/#Delete$/d\" /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
 ln -s $LOCAL_HOME/.zshrc /root/.zshrc
 ln -s $LOCAL_HOME/.p10k.zsh /root/.p10k.zsh
 ln -s $LOCAL_HOME/powerlevel10k /root/powerlevel10k
+
+
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
