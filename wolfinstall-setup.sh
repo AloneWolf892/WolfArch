@@ -51,11 +51,11 @@ do
 done
 
 if [[ $proctype -eq "intel" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode reflector base-devel rust zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode reflector base-devel rustup zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "amd" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode reflector base-devel rust zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode reflector base-devel rustup zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "virtualmachine" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel rust zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel rustup zsh zsh-syntax-highlighting zsh-autosuggestions
 fi
 
 genfstab -U /mnt >> /mnt/etc/fstab
