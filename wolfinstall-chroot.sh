@@ -100,9 +100,8 @@ sudo -u $LOCAL_USERNAME echo "shell_integration         no-cursor       " >> $LO
 sudo -u $LOCAL_USERNAME echo "window_padding_width      10              " >> $LOCAL_HOME/.config/kitty/kitty.conf
 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
-
-sudo -u $LOCAL_USERNAME cp /root/WolfArch/.zshrc $LOCAL_HOME/.zshrc
-sudo -u $LOCAL_USERNAME cp /root/WolfArch/.p10k.zsh $LOCAL_HOME/.p10k.zsh
+cp /root/WolfArch/.zshrc $LOCAL_HOME/.zshrc
+cp /root/WolfArch/.p10k.zsh $LOCAL_HOME/.p10k.zsh
 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.p10k.zsh
