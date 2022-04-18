@@ -123,7 +123,7 @@ echo "gnome-extensions enable material-shell@papyelgringo #Delete" >> /etc/zsh/z
 echo "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' #Delete" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' #Delete" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'es+winkeys')]\" #Delete" >> /etc/zsh/zprofile
-echo "gsettings set org.gnome.desktop.peripherals.touchpad click-method 'area'" >> /etc/zsh/zprofile
+echo "gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas'" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true" >> /etc/zsh/zprofile
 echo "sed -i \"/#Delete$/d\" /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
 
