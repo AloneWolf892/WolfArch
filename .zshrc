@@ -3942,7 +3942,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
                                                                                    
-# End of lines configured by zsh-newuser-install                                       
+# End of lines configured by zsh-newuser-install   
+
+CPU_THREADS=$(getconf _NPROCESSORS_ONLN)
+alias robocopy = rclone copy -P --
                                                                                               
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh             
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh                     
