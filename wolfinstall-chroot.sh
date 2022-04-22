@@ -84,7 +84,7 @@ chown -R $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.local
 
 fc-cache
 
-sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian --noconfirm
+sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix --noconfirm
 sudo -u $LOCAL_USERNAME paru -S wine-stable wine-gecko wine-mono --noconfirm
 sudo -u $LOCAL_USERNAME paru -S dina-font tamsyn-font ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji --noconfirm
 systemctl enable gdm.service --now
@@ -125,6 +125,11 @@ ln -s $LOCAL_HOME/powerlevel10k /root/powerlevel10k
 
 sudo -u $LOCAL_USERNAME paru -S openssl mpv aria2 ffmpeg openvpn celluloid --noconfirm
 sudo -u $LOCAL_USERNAME paru -S ani-cli-git --noconfirm
+
+dos2unix $LOCAL_HOME/.zshrc
+dos2unix $LOCAL_HOME/.p10k.zsh
+dos2unix $LOCAL_HOME/.vimrc
+dos2unix $LOCAL_HOME/.config/kitty/kitty.conf
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
