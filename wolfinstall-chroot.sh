@@ -123,8 +123,8 @@ ln -s $LOCAL_HOME/.zshrc /root/.zshrc
 ln -s $LOCAL_HOME/.p10k.zsh /root/.p10k.zsh
 ln -s $LOCAL_HOME/powerlevel10k /root/powerlevel10k
 
-paru -S openssl mpv aria2 ffmpeg openvpn celluloid --noconfirm
-paru -S ani-cli-git --noconfirm
+sudo -u $LOCAL_USERNAME paru -S openssl mpv aria2 ffmpeg openvpn celluloid --noconfirm
+sudo -u $LOCAL_USERNAME paru -S ani-cli-git --noconfirm
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
 echo "$LOCAL_USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
