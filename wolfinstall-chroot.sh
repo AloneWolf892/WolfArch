@@ -91,24 +91,15 @@ systemctl enable gdm.service --now
 
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/kitty
-
-sudo -u $LOCAL_USERNAME echo "font_family               CaskaydiaCove NF" >> $LOCAL_HOME/.config/kitty/kitty.conf
-sudo -u $LOCAL_USERNAME echo "font_size                 14              " >> $LOCAL_HOME/.config/kitty/kitty.conf
-sudo -u $LOCAL_USERNAME echo "cursor                    #00ffcc         " >> $LOCAL_HOME/.config/kitty/kitty.conf
-sudo -u $LOCAL_USERNAME echo "cursor_shape              block           " >> $LOCAL_HOME/.config/kitty/kitty.conf
-sudo -u $LOCAL_USERNAME echo "hide_window_decorations   yes             " >> $LOCAL_HOME/.config/kitty/kitty.conf
-sudo -u $LOCAL_USERNAME echo "shell_integration         no-cursor       " >> $LOCAL_HOME/.config/kitty/kitty.conf
-sudo -u $LOCAL_USERNAME echo "window_padding_width      10              " >> $LOCAL_HOME/.config/kitty/kitty.conf
-
+cp /root/WolfArch/Config/kitty.conf $LOCAL_HOME/.config/kitty/kitty.conf
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
-cp /root/WolfArch/.zshrc $LOCAL_HOME/.zshrc
-cp /root/WolfArch/.p10k.zsh $LOCAL_HOME/.p10k.zsh
 
+cp /root/WolfArch/Config/.zshrc $LOCAL_HOME/.zshrc
+cp /root/WolfArch/Config/.p10k.zsh $LOCAL_HOME/.p10k.zsh
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.p10k.zsh
 
 sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
-sudo -u $LOCAL_USERNAME echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> $LOCAL_HOME/.zshrc
 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
 
