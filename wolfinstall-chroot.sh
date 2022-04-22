@@ -99,6 +99,9 @@ cp /root/WolfArch/Config/.p10k.zsh $LOCAL_HOME/.p10k.zsh
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.p10k.zsh
 
+cp /root/WolfArch/Config/.vimrc $LOCAL_HOME/.vimrc
+chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.vimrc
+
 sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
