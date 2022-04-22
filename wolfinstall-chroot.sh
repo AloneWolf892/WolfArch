@@ -53,7 +53,7 @@ cd paru-bin
 sudo -u $LOCAL_USERNAME makepkg -si --noconfirm
 cd ..
 
-sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant iwd dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync rclone qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu firewalld man --noconfirm
+sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant iwd dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync rclone qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu firewalld man vifm --noconfirm
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCHLINUX
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -84,7 +84,7 @@ chown -R $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.local
 
 fc-cache
 
-sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted --noconfirm
+sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian --noconfirm
 sudo -u $LOCAL_USERNAME paru -S wine-stable wine-gecko wine-mono --noconfirm
 sudo -u $LOCAL_USERNAME paru -S dina-font tamsyn-font ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji --noconfirm
 systemctl enable gdm.service --now
@@ -132,7 +132,7 @@ ln -s $LOCAL_HOME/.zshrc /root/.zshrc
 ln -s $LOCAL_HOME/.p10k.zsh /root/.p10k.zsh
 ln -s $LOCAL_HOME/powerlevel10k /root/powerlevel10k
 
-paru -S openssl mpv aria2 ffmpeg --noconfirm
+paru -S openssl mpv aria2 ffmpeg openvpn celluloid --noconfirm
 paru -S ani-cli-git --noconfirm
 
 rm /etc/sudoers.d/$LOCAL_USERNAME
