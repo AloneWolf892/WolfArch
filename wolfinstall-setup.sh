@@ -1,14 +1,24 @@
+# Get the number of threads on the CPU
 CPU_THREADS=$(getconf _NPROCESSORS_ONLN)
+
+# Set the number of parallel downloads on pair with the number of threads
 sed -i "/^#ParallelDownloads/ c ParallelDownloads = $CPU_THREADS" /etc/pacman.conf
 sed -i "/^#Color/ c Color" /etc/pacman.conf
+
+# Sincronize time
 timedatectl set-ntp true
-pacman -Sy reflector --noconfirm
+
+# Get the best servers for spain
 reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
+
+# Install these because of utility, neofetch is cool
 pacman -Sy dialog neofetch --noconfirm
+
+# Cool kid
 neofetch
 
+# Select the root partition for the OS
 lsblk
-
 PS3="Select the root partition: "
 COLUMNS=12
 select rootpartition in $(lsblk -n --output NAME -l)
@@ -19,6 +29,7 @@ do
         break
 done
 
+# Select the /boot/efi partition
 lsblk
 PS3="Select the boot partition: "
 COLUMNS=12
@@ -31,6 +42,7 @@ do
         break
 done
 
+# Select the swap partition
 lsblk
 PS3="Select the swap partition: "
 COLUMNS=12
@@ -42,6 +54,7 @@ do
         break
 done
 
+# Select the processor brand
 PS3="Select your processor brand: "
 COLUMNS=12
 select proctype in amd intel virtualmachine
@@ -50,19 +63,25 @@ do
     break
 done
 
+# Change the installer based on the processor selected
+# This installs the base OS to the selected root partition
 if [[ $proctype -eq "intel" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode reflector base-devel rustup zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "amd" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode reflector base-devel rustup zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "virtualmachine" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel rustup zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
 fi
 
+# I still don't know why this is necessary
 genfstab -U /mnt >> /mnt/etc/fstab
 
+# Copy the repo folder to the home of root to keep using the files within it
 cp WolfArch /mnt/root/ -r
 
+# Change the root to the mounted partition and start the other script
 arch-chroot /mnt /bin/zsh $HOME/WolfArch/wolfinstall-chroot.sh
 
+# Dismount the drives and reboot
 umount -a
 reboot
