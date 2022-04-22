@@ -11,6 +11,7 @@ Plug 'rust-lang/rust.vim'
 
 " Config files
 Plug 'fladson/vim-kitty'
+Plug 'mattn/emmet.vim'
 
 " File explorer
 Plug 'vifm/vifm.vim'
@@ -27,9 +28,20 @@ Plug 'mcchrish/nnn.vim'
 
 call plug#end()
 
+" Set tab spaces
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+
+" Activate rust plugin
+syntax enable
+filetype plugin indent on
+
 " Activate vim-rainbow
 let g:rainbow_active = 1
 
+" Activate status bar
 set laststatus=2
 
 " Vim only
@@ -43,3 +55,7 @@ set wrap
 
 " Encoding
 set encoding=utf-8
+
+" Scrolloff
+set scrolloff=8
+set nowrap
