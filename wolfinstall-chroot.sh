@@ -13,43 +13,13 @@ read LOCAL_PASSWORD
 echo "Input Hostname"
 read LOCAL_HOSTNAME
 
-# Update the mirrorlist to have the best servers 
-reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
-
-# Set up the timezone for the machine
-ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime 
-hwclock --systohc
-
-# Update time and date info
-timedatectl set-ntp true
-
-# Get information about the number of logical cores that the CPU has
-CPU_THREADS=$(getconf _NPROCESSORS_ONLN)
-
-# Set up pacman.conf using the number of threads available
-sed -i "/^#ParallelDownloads/ c ParallelDownloads = $CPU_THREADS" /etc/pacman.conf
-sed -i "/^#Color/ c Color" /etc/pacman.conf
-sed -i "93s/.//" /etc/pacman.conf
-sed -i "94s/.//" /etc/pacman.conf
-
-# Force update the repos
-pacman -Syyy
-
-# Change the default shell for new users to be zsh (Yes I like zsh)
-useradd -D -s /bin/zsh
-
 # Enable the english US locale
 sed -i "178s/.//" /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
-# Set the hostname for the machine
-echo $LOCAL_HOSTNAME >> /etc/hostname
-
-# Set up the hosts file
-echo "127.0.0.1 localhost" >> /etc/hosts
-echo "::1       localhost" >> /etc/hosts
-echo "127.0.1.1 $LOCAL_HOSTNAME.localdomain   $LOCAL_HOSTNAME" >> /etc/hosts
+# Change the default shell for new users to be zsh (Yes I like zsh)
+useradd -D -s /bin/zsh
 
 # Set the root passoword to be the same as the user password
 echo root:$LOCAL_PASSWORD | chpasswd
@@ -66,13 +36,43 @@ echo $LOCAL_USERNAME:$LOCAL_PASSWORD | chpasswd
 # Set the user to be able to execute the sudo command without a password prompt
 echo "$LOCAL_USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$LOCAL_USERNAME
 
+# Get information about the number of logical cores that the CPU has
+CPU_THREADS=$(getconf _NPROCESSORS_ONLN)
+
+# Set up pacman.conf using the number of threads available
+sed -i "/^#ParallelDownloads/ c ParallelDownloads = $CPU_THREADS" /etc/pacman.conf
+sed -i "/^#Color/ c Color" /etc/pacman.conf
+sed -i "93s/.//" /etc/pacman.conf
+sed -i "94s/.//" /etc/pacman.conf
+
+# Change the Full Name assigned to the local user 
+sudo -u $LOCAL_USERNAME chfn -f $LOCAL_FULLNAME
+
+# Update the mirrorlist to have the best servers 
+reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
+
+# Set up the timezone for the machine
+ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime 
+hwclock --systohc
+
+# Update time and date info
+timedatectl set-ntp true
+
+# Force update the repos
+pacman -Syyy
+
+# Set the hostname for the machine
+echo $LOCAL_HOSTNAME >> /etc/hostname
+
+# Set up the hosts file
+echo "127.0.0.1 localhost" >> /etc/hosts
+echo "::1       localhost" >> /etc/hosts
+echo "127.0.1.1 $LOCAL_HOSTNAME.localdomain   $LOCAL_HOSTNAME" >> /etc/hosts
+
 # Install rust because ferris
 sudo -u $LOCAL_USERNAME curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > $LOCAL_HOME/rustup-init.sh 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/rustup-init.sh
 sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/rustup-init.sh -y
-
-# Change the Full Name assigned to the local user 
-sudo -u $LOCAL_USERNAME chfn -f $LOCAL_FULLNAME
 
 # Variable that holds the home directory for the local user
 LOCAL_HOME=/home/$LOCAL_USERNAME
