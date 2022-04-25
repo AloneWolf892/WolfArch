@@ -3945,7 +3945,7 @@ fi
 # End of lines configured by zsh-newuser-install   
 
 CPU_THREADS=$(getconf _NPROCESSORS_ONLN)
-alias robocopy="rclone copy --progress --update --multi-thread-streams"
+alias robocopy="rclone copy --progress --update --multi-thread-streams $CPU_THREADS"
                                                                                               
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh             
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh                     
