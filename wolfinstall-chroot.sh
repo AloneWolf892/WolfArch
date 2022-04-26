@@ -92,6 +92,9 @@ cd ..
 # Summary: bootloader, filesystems, networking, bluetooth, audio, virtualization
 sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant iwd dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync rclone qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu firewalld man vifm --noconfirm
 
+# Leave activated the virtual network for QEMU virtual machines
+virsh net-autostart default
+
 # First grub install to autocreate all the files
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCHLINUX
 grub-mkconfig -o /boot/grub/grub.cfg
