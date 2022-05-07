@@ -158,7 +158,7 @@ cp /root/WolfArch/Config/.p10k.zsh $LOCAL_HOME/.p10k.zsh
 
 # Copy the configs for vim
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/nvim
-cp /root/WolfArch/Config/inti.vim $LOCAL_HOME/.config/nvim/init.vim
+cp /root/WolfArch/Config/init.vim $LOCAL_HOME/.config/nvim/init.vim
 
 # Download the powerlevel10k plugin so the terminal is prettier
 sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
