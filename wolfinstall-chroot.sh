@@ -1,6 +1,9 @@
 # Change the default shell for root to be zsh
 chsh -s /bin/zsh root
 
+# Update time and date info
+timedatectl set-ntp true
+
 # Get info from the user to setup, well, the user
 echo "Input username"
 read LOCAL_USERNAME
@@ -125,7 +128,7 @@ fc-cache
 
 # Second batch of installed apps
 # Summary: gnome, gdm, chrome, steam, discord, vscode, obsidian, kitty terminal
-sudo -u $LOCAL_USERNAME paru -S gnome gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix --noconfirm
+sudo -u $LOCAL_USERNAME paru -S gdm gnome-shell gnome-extensions gnome-font-viewer gnome-extra gnome-themes-extra google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix --noconfirm
 
 # Try to install wine in some sense cuz it will failt due to conflict packages but whatever
 sudo -u $LOCAL_USERNAME paru -S wine-stable wine-gecko wine-mono --noconfirm
@@ -154,7 +157,8 @@ cp /root/WolfArch/Config/.zshrc $LOCAL_HOME/.zshrc
 cp /root/WolfArch/Config/.p10k.zsh $LOCAL_HOME/.p10k.zsh
 
 # Copy the configs for vim
-cp /root/WolfArch/Config/.vimrc $LOCAL_HOME/.vimrc
+sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/nvim
+cp /root/WolfArch/Config/inti.vim $LOCAL_HOME/.config/nvim/init.vim
 
 # Download the powerlevel10k plugin so the terminal is prettier
 sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
@@ -183,13 +187,13 @@ echo "sed -i \"/#Delete$/d\" /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.p10k.zsh
-chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.vimrc
+chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/nvim/init.vim
 chwon -R $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/powerlevel10k
 
 # Creating some symlinks so that the root user also has the cool configs enabled.
 ln -s $LOCAL_HOME/.zshrc /root/.zshrc
 ln -s $LOCAL_HOME/.p10k.zsh /root/.p10k.zsh
-ln -s $LOCAL_HOME/.vimrc /root/.vimrc
+ln -s $LOCAL_HOME/.config/nvim/init.vim /root/.config/nvim/init.vim
 ln -s $LOCAL_HOME/powerlevel10k /root/powerlevel10k
 ln -s $LOCAL_HOME/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
 
@@ -200,7 +204,7 @@ sudo -u $LOCAL_USERNAME paru -S ani-cli-git --noconfirm
 # Since this is written on a windows machine we need to sanitize the config files.
 dos2unix $LOCAL_HOME/.zshrc
 dos2unix $LOCAL_HOME/.p10k.zsh
-dos2unix $LOCAL_HOME/.vimrc
+dos2unix $LOCAL_HOME/.config/nvim/init.vim
 dos2unix $LOCAL_HOME/.config/kitty/kitty.conf
 
 # Set the local user to be able to use sudo commands but with password prompt

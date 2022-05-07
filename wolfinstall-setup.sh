@@ -66,11 +66,11 @@ done
 # Change the installer based on the processor selected
 # This installs the base OS to the selected root partition
 if [[ $proctype -eq "intel" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git intel-ucode reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware neovim nano git intel-ucode reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "amd" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git amd-ucode reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware neovim nano git amd-ucode reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
 elif [[ $proctype -eq "virtualmachine" ]]
-then pacstrap /mnt base linux linux-firmware vim nano git reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
+then pacstrap /mnt base linux linux-firmware neovim nano git reflector base-devel zsh zsh-syntax-highlighting zsh-autosuggestions
 fi
 
 # I still don't know why this is necessary
