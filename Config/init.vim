@@ -11,7 +11,6 @@ Plug 'rust-lang/rust.vim'
 
 " Config files
 Plug 'fladson/vim-kitty'
-Plug 'mattn/emmet.vim'
 
 " File explorer
 Plug 'vifm/vifm.vim'
@@ -33,6 +32,9 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+
+" Set cursor to always be block styled
+set guicursor=i:block
 
 " Activate rust plugin
 syntax enable
