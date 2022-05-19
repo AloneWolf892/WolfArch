@@ -128,7 +128,7 @@ fc-cache
 
 # Second batch of installed apps
 # Summary: gnome, gdm, chrome, steam, discord, vscode, obsidian, kitty terminal
-sudo -u $LOCAL_USERNAME paru -S gdm gnome-control-center gnome-font-viewer gnome-themes-extra nautilus adwaita-icon-theme gnome-desktop-common google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix --noconfirm
+sudo -u $LOCAL_USERNAME paru -S gdm gnome-control-center gnome-font-viewer gnome-themes-extra nautilus adwaita-icon-theme gnome-desktop-common google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix joycond --noconfirm
 
 # Try to install wine in some sense cuz it will failt due to conflict packages but whatever
 sudo -u $LOCAL_USERNAME paru -S wine-stable wine-gecko wine-mono --noconfirm
@@ -144,6 +144,7 @@ systemctl enable sshd
 systemctl enable reflector.timer
 systemctl enable libvirtd
 systemctl enable gdm.service
+systemctl enable joycond
 
 # Create the kitty terminal config directory and copy the file from the repo
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config
