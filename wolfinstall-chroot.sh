@@ -128,7 +128,7 @@ fc-cache
 
 # Second batch of installed apps
 # Summary: gnome, gdm, chrome, steam, discord, vscode, obsidian, kitty terminal
-sudo -u $LOCAL_USERNAME paru -S gdm gnome-control-center gnome-font-viewer gnome-themes-extra nautilus adwaita-icon-theme gnome-desktop-common google-chrome chrome-gnome-shell gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix joycond-git --noconfirm
+sudo -u $LOCAL_USERNAME paru -S gdm gnome-shell gnome-extensions gnome-font-viewer gnome-extra gnome-themes-extra google-chrome gnome-browser-connector gnome-shell-extension-installer npm ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix --noconfirm
 
 # Try to install wine in some sense cuz it will failt due to conflict packages but whatever
 sudo -u $LOCAL_USERNAME paru -S wine-stable wine-gecko wine-mono --noconfirm
@@ -144,7 +144,6 @@ systemctl enable sshd
 systemctl enable reflector.timer
 systemctl enable libvirtd
 systemctl enable gdm.service
-systemctl enable joycond
 
 # Create the kitty terminal config directory and copy the file from the repo
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config
@@ -171,12 +170,14 @@ cd $LOCAL_HOME/Downloads/Grub-themes/xenlism-grub-arch-1080p/
 . ./install.sh
 
 # This installs material-shell and yes it needs to be run twice because for some reason the first time fails but the second time works perfectly fine.
-sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
-sudo -u $LOCAL_USERNAME gnome-shell-extension-installer 3357 --yes
-
+sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/Github
+cd $LOCAL_HOME/Github
+sudo -u $LOCAL_USERNAME git clone https://github.com/material-shell/material-shell.git
+cd $LOCAL_HOME/Github/material-shell
+sudo -u $LOCAL_USERNAME make install
+#
 # Adding gnome configs to the zprofile file so that the commands are run on login of any user
 # Summary: Enable material-shell; enable dark-theme; enable spanish keyboard; config the touchpad so it makes sense.
-echo "gnome-extensions enable material-shell@papyelgringo #Delete" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' #Delete" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' #Delete" >> /etc/zsh/zprofile
 echo "gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'es+winkeys')]\" #Delete" >> /etc/zsh/zprofile
