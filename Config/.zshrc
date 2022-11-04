@@ -891,14 +891,21 @@ function grmlcomp () {
     fi
 
     # host completion
+    _etc_hosts=()
+    _ssh_config_hosts=()
+    _ssh_hosts=()
     if is42 ; then
-        [[ -r ~/.ssh/config ]] && _ssh_config_hosts=(${${(s: :)${(ps:\t:)${${(@M)${(f)"$(<$HOME/.ssh/config)"}:#Host *}#Host }}}:#*[*?]*}) || _ssh_config_hosts=()
-        [[ -r ~/.ssh/known_hosts ]] && _ssh_hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}) || _ssh_hosts=()
-        [[ -r /etc/hosts ]] && [[ "$NOETCHOSTS" -eq 0 ]] && : ${(A)_etc_hosts:=${(s: :)${(ps:\t:)${${(f)~~"$(grep -v '^0\.0\.0.\0\|^127\.0\.0\.1\|^::1 ' /etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}} || _etc_hosts=()
-    else
-        _ssh_config_hosts=()
-        _ssh_hosts=()
-        _etc_hosts=()
+        if [[ -r ~/.ssh/config ]] ; then
+            _ssh_config_hosts=(${${(s: :)${(ps:\t:)${${(@M)${(f)"$(<$HOME/.ssh/config)"}:#Host *}#Host }}}:#*[*?]*})
+        fi
+
+        if [[ -r ~/.ssh/known_hosts ]] ; then
+            _ssh_hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*})
+        fi
+
+        if [[ -r /etc/hosts ]] && [[ "$NOETCHOSTS" -eq 0 ]] ; then
+            : ${(A)_etc_hosts:=${(s: :)${(ps:\t:)${${(f)~~"$(grep -v '^0\.0\.0\.0\|^127\.0\.0\.1\|^::1 ' /etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}}
+        fi
     fi
 
     local localname
@@ -2665,14 +2672,14 @@ if [[ "$TERM" != dumb ]]; then
     #a1# List all files, with colors (\kbd{ls -la \ldots})
     alias la="command ls -la ${ls_options:+${ls_options[*]}}"
     #a1# List files with long colored list, without dotfiles (\kbd{ls -l \ldots})
-    alias ll="command ls -al ${ls_options:+${ls_options[*]}}"
+    alias ll="command ls -la ${ls_options:+${ls_options[*]}}"
     #a1# List files with long colored list, human readable sizes (\kbd{ls -hAl \ldots})
     alias lh="command ls -hAl ${ls_options:+${ls_options[*]}}"
     #a1# List files with long colored list, append qualifier to filenames (\kbd{ls -l \ldots})\\&\quad(\kbd{/} for directories, \kbd{@} for symlinks ...)
     alias l="command ls -l ${ls_options:+${ls_options[*]}}"
 else
     alias la='command ls -la'
-    alias ll='command ls -al'
+    alias ll='command ls -la'
     alias lh='command ls -hAl'
     alias l='command ls -l'
 fi
@@ -2841,7 +2848,7 @@ if [ -e /var/log/syslog ] ; then
   #a1# Take a look at the syslog: \kbd{\$PAGER /var/log/syslog || journalctl}
   salias llog="$PAGER /var/log/syslog"     # take a look at the syslog
   #a1# Take a look at the syslog: \kbd{tail -f /var/log/syslog || journalctl}
-  salias tlog="tail -f /var/log/syslog"    # follow the syslog
+  salias tlog="tail --follow=name /var/log/syslog"    # follow the syslog
 elif check_com -c journalctl ; then
   salias llog="journalctl"
   salias tlog="journalctl -f"
