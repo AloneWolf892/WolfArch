@@ -3953,6 +3953,17 @@ fi
 
 CPU_THREADS=$(getconf _NPROCESSORS_ONLN)
 alias robocopy="rclone copy --progress --update --multi-thread-streams $CPU_THREADS"
+fn robocopy() {
+    command rclone copy $@ --progress --update --multi-thread-streams $CPU_THREADS
+}
+
+fn vim() {
+    if [[ $@ == "." ]]; then
+        ~/.local/bin/lvim +Texplore
+    else
+        ~/.local/bin/lvim $@
+    fi
+}
                                                                                               
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh             
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh                     
