@@ -1,14 +1,14 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
+format = """\
 [](#3c3c3c)\
 $sudo\
 $username\
 $hostname\
 $directory\
+$cmd_duration\
 $rust\
 $git_branch\
-$cmd_duration\
 [](#3c3c3c) $fill [](#3c3c3c)\
 $battery\
 $memory_usage\
@@ -18,7 +18,7 @@ $line_break\
 $character\
 """
 
-# add_newline = false
+add_newline = false
 
 [character]
 success_symbol = "[](bright-green)"
