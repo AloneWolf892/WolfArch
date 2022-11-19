@@ -1,0 +1,84 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](#3c3c3c)\
+$sudo\
+$username\
+$hostname\
+$directory\
+$rust\
+$git_branch\
+$cmd_duration\
+[](#3c3c3c) $fill [](#3c3c3c)\
+$battery\
+$memory_usage\
+$time\
+[](#3c3c3c)\
+$line_break\
+$character\
+"""
+
+# add_newline = false
+
+[character]
+success_symbol = "[](bright-green)"
+error_symbol = "[✗](bright-red)"
+format = "$symbol "
+
+[sudo]
+disabled = false
+symbol = " "
+style = "bg:#3c3c3c fg:bright-red"
+format = "[ $symbol]($style)"
+
+[username]
+show_always = true
+style_user = "bg:#3c3c3c fg:#ffbb00"
+style_root = "bg:#3c3c3c fg:red"
+format = '[ $user]($style)'
+
+[hostname]
+ssh_only = false
+style = "bg:#3c3c3c fg:#ffbb00"
+format = '[@$hostname]($style)'
+
+[directory]
+style = "bg:#3c3c3c fg:green"
+truncation_length = 5
+truncate_to_repo = false
+read_only = ""
+read_only_style = "bg:#3c3c3c fg:#ffbb00"
+format = "[  $path ]($style)[$read_only ]($read_only_style)"
+
+[git_branch]
+symbol = ""
+style = "bg:#3c3c3c fg:purple"
+format = "[ $symbol $branch(:$remote_branch) ]($style)"
+
+[time]
+disabled = false
+time_format = "%I:%M%p"
+use_12hr = true
+style = 'bg:#3c3c3c fg:red'
+format = '[  $time ]($style)'
+
+[cmd_duration]
+min_time = 50
+style = "bg:#3c3c3c fg:cyan"
+format = "[ ﮫ $duration ]($style)"
+
+[memory_usage]
+disabled = false
+threshold = 1
+symbol = "  "
+style = "bg:#3c3c3c fg:bright-blue"
+format = "[$symbol$ram]($style)"
+
+[fill]
+symbol = "-"
+style = "bold cyan"
+
+[rust]
+style = "bg:#3c3c3c fg:#ff5f00"
+symbol = "🦀"
+format = "[$symbol$version ]($style)"
