@@ -21,7 +21,7 @@ $character\
 add_newline = false
 
 [character]
-success_symbol = "[](bright-green)"
+success_symbol = "[](#19cb00)"
 error_symbol = "[✗](bright-red)"
 format = "$symbol "
 
@@ -43,7 +43,7 @@ style = "bg:#3c3c3c fg:#ffbb00"
 format = '[@$hostname]($style)'
 
 [directory]
-style = "bg:#3c3c3c fg:green"
+style = "bg:#3c3c3c fg:#19cb00"
 truncation_length = 5
 truncate_to_repo = false
 read_only = ""
