@@ -48,7 +48,7 @@ truncation_length = 5
 truncate_to_repo = false
 read_only = ""
 read_only_style = "bg:#3c3c3c fg:#ffbb00"
-format = "[  $path ]($style)[$read_only ]($read_only_style)"
+format = "[  $path]($style)[$read_only ]($read_only_style)"
 
 [git_branch]
 symbol = ""
@@ -82,3 +82,12 @@ style = "bold cyan"
 style = "bg:#3c3c3c fg:#ff5f00"
 symbol = "🦀"
 format = "[$symbol$version ]($style)"
+
+[battery]
+full_symbol = "  "
+charging_symbol = "  "
+discharging_symbol = "  "
+unknown_symbol = ""
+empty_symbol = ""
+style = "bg:#3c3c3c fg:red"
+format = "[$symbol$percentage]($style)"
