@@ -65,7 +65,7 @@ format = '[  $time ]($style)'
 [cmd_duration]
 min_time = 50
 style = "bg:#3c3c3c fg:cyan"
-format = "[ ﮫ $duration ]($style)"
+format = "[羽 $duration ]($style)"
 
 [memory_usage]
 disabled = false
