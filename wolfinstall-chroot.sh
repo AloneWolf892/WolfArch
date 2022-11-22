@@ -72,19 +72,19 @@ echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $LOCAL_HOSTNAME.localdomain   $LOCAL_HOSTNAME" >> /etc/hosts
 
+# Variable that holds the home directory for the local user
+LOCAL_HOME=/home/$LOCAL_USERNAME
+
 # Install rust because ferris
+cd $LOCAL_HOME
 sudo -u $LOCAL_USERNAME curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > $LOCAL_HOME/rustup-init.sh 
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/rustup-init.sh
 sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/rustup-init.sh -y
-
-zsh
 
 # Install prompt
 sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install vivid
 sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install starship --locked 
 
-# Variable that holds the home directory for the local user
-LOCAL_HOME=/home/$LOCAL_USERNAME
 
 # Set the current working directory for the rest of the script
 cd $LOCAL_HOME
