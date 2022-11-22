@@ -6,9 +6,9 @@ $sudo\
 $username\
 $hostname\
 $directory\
-$cmd_duration\
 $rust\
 $git_branch\
+$cmd_duration\
 [](#3c3c3c) $fill [](#3c3c3c)\
 $battery\
 $memory_usage\
@@ -87,7 +87,28 @@ format = "[$symbol$version ]($style)"
 full_symbol = "  "
 charging_symbol = "  "
 discharging_symbol = "  "
-unknown_symbol = ""
-empty_symbol = ""
+unknown_symbol = "  "
+empty_symbol = "  "
 style = "bg:#3c3c3c fg:red"
 format = "[$symbol$percentage]($style)"
+
+[[battery.display]]
+threshold = 10
+discharging_symbol = "  "
+style = "bg:#3c3c3c fg:red"
+
+[[battery.display]]
+threshold = 30
+discharging_symbol = "  "
+style = "bg:#3c3c3c fg:yellow"
+
+[[battery.display]]
+threshold = 60
+discharging_symbol = "  "
+style = "bg:#3c3c3c fg:green"
+
+[[battery.display]]
+threshold = 100
+discharging_symbol = "  "
+full_symbol = "  "
+style = "bg:#3c3c3c fg:green"
