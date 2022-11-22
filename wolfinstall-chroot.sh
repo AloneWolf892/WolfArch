@@ -78,8 +78,8 @@ chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/rustup-init.sh
 sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/rustup-init.sh -y
 
 # Install prompt
-sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/.cargo/bin/cargo install vivid
-sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/.cargo/bin/cargo install starship --locked 
+sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install vivid
+sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install starship --locked 
 
 # Variable that holds the home directory for the local user
 LOCAL_HOME=/home/$LOCAL_USERNAME
