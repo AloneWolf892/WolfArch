@@ -77,6 +77,8 @@ sudo -u $LOCAL_USERNAME curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.r
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/rustup-init.sh
 sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/rustup-init.sh -y
 
+zsh
+
 # Install prompt
 sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install vivid
 sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install starship --locked 
