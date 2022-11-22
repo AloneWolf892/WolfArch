@@ -150,7 +150,7 @@ sudo -u $LOCAL_USERNAME npm install -g npm@latest
 
 # Install Lunar Vim
 cd $LOCAL_HOME
-cp /root/Github/WolfArch/Config/lunarvim.sh $LOCAL_HOME/lunarvim.sh
+cp /root/WolfArch/Config/lunarvim.sh $LOCAL_HOME/lunarvim.sh
 sudo -u $LOCAL_USER sh $LOCAL_HOME/lunarvim.sh
 ln -s $LOCAL_HOME/.local/bin/lvim /usr/bin/vim
 ln -s $LOCAL_HOME/.local/bin/lvim /usr/bin/lvim
