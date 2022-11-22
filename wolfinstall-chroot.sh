@@ -77,6 +77,10 @@ sudo -u $LOCAL_USERNAME curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.r
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/rustup-init.sh
 sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/rustup-init.sh -y
 
+# Install prompt
+sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/.cargo/bin/cargo install vivid
+sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/.cargo/bin/cargo install starship --locked 
+
 # Variable that holds the home directory for the local user
 LOCAL_HOME=/home/$LOCAL_USERNAME
 
@@ -117,7 +121,7 @@ sudo -u $LOCAL_USERNAME mkdir Downloads
 cd Downloads
 sudo -u $LOCAL_USERNAME mkdir CaskaydiaCove
 cd CaskaydiaCove
-sudo -u $LOCAL_USERNAME wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
+sudo -u $LOCAL_USERNAME wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/CascadiaCode.zip
 sudo -u $LOCAL_USERNAME unzip CascadiaCode.zip
 
 # Install the CaskaydiaCove font cuz I love it
@@ -128,13 +132,28 @@ fc-cache
 
 # Second batch of installed apps
 # Summary: gnome, gdm, chrome, steam, discord, vscode, obsidian, kitty terminal
-sudo -u $LOCAL_USERNAME paru -S gdm gnome-control-center gnome-font-viewer gnome-themes-extra gnome-keyring libsecret libgnome-keyring nautilus adwaita-icon-theme gnome-desktop-common google-chrome gnome-browser-connector npm gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix joycond-git --noconfirm
+sudo -u $LOCAL_USERNAME paru -S gdm gnome-control-center gnome-font-viewer gnome-themes-extra gnome-keyring libsecret libgnome-keyring nautilus adwaita-icon-theme gnome-desktop-common google-chrome gnome-browser-connector gnome-shell-extension-installer ttf-ms-fonts steam discord lutris grub-customizer visual-studio-code-bin kitty neofetch btop gparted obsidian dos2unix joycond-git --noconfirm
 
 # Try to install wine in some sense cuz it will failt due to conflict packages but whatever
 sudo -u $LOCAL_USERNAME paru -S wine-stable wine-gecko wine-mono --noconfirm
 
 # Install a bunch of fonts so that internet browsing works properly, I don't like seeing a bunch of squares instead of actual words
 sudo -u $LOCAL_USERNAME paru -S dina-font tamsyn-font ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji --noconfirm
+
+# Install nvm, nodejs and npm
+cd $LOCAL_HOME
+sudo -u $LOCAL_USERNAME curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | sudo -u $LOCAL_USERNAME bash
+export NVM_DIR="$LOCAL_HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+sudo -u $LOCAL_USERNAME npm install node
+sudo -u $LOCAL_USERNAME npm install -g npm@latest
+
+# Install Lunar Vim
+cd $LOCAL_HOME
+cp /root/Github/WolfArch/Config/lunarvim.sh $LOCAL_HOME/lunarvim.sh
+sudo -u $LOCAL_USER sh $LOCAL_HOME/lunarvim.sh
+ln -s $LOCAL_HOME/.local/bin/lvim /usr/bin/vim
+ln -s $LOCAL_HOME/.local/bin/lvim /usr/bin/lvim
 
 # Basic system services enabled so they run at start
 systemctl enable NetworkManager
@@ -154,12 +173,14 @@ mkdir /root/.config
 mkdir /root/.config/kitty
 
 # Copy the zsh configs 
-cp /root/WolfArch/Config/.zshrc $LOCAL_HOME/.zshrc
-cp /root/WolfArch/Config/.p10k.zsh $LOCAL_HOME/.p10k.zsh
+cp /root/WolfArch/Config/.projectzshrc $LOCAL_HOME/.zshrc
 
 # Copy the configs for vim
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/nvim
 cp /root/WolfArch/Config/init.vim $LOCAL_HOME/.config/nvim/init.vim
+
+# Copy the configs for starship
+cp /root/WolfArch/Config/starship.toml $LOCAL_HOME/.config/starship.toml
 
 # Download the powerlevel10k plugin so the terminal is prettier
 sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
@@ -190,16 +211,14 @@ echo "sed -i \"/#Delete$/d\" /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
 # Setting the ownership of configs to the user
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
-chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.p10k.zsh
 chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/nvim/init.vim
-chwon -R $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/powerlevel10k
+chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/starship.toml
 
 # Creating some symlinks so that the root user also has the cool configs enabled.
 ln -s $LOCAL_HOME/.zshrc /root/.zshrc
-ln -s $LOCAL_HOME/.p10k.zsh /root/.p10k.zsh
 ln -s $LOCAL_HOME/.config/nvim/init.vim /root/.config/nvim/init.vim
-ln -s $LOCAL_HOME/powerlevel10k /root/powerlevel10k
 ln -s $LOCAL_HOME/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
+ln -s $LOCAL_HOME/.config/starship.toml /root/.config/starship.toml
 
 # Install the way to watch anime in the command line
 sudo -u $LOCAL_USERNAME paru -S openssl mpv aria2 ffmpeg openvpn celluloid --noconfirm
@@ -207,9 +226,9 @@ sudo -u $LOCAL_USERNAME paru -S ani-cli-git --noconfirm
 
 # Since this is written on a windows machine we need to sanitize the config files.
 dos2unix $LOCAL_HOME/.zshrc
-dos2unix $LOCAL_HOME/.p10k.zsh
 dos2unix $LOCAL_HOME/.config/nvim/init.vim
 dos2unix $LOCAL_HOME/.config/kitty/kitty.conf
+dos2unix $LOCAL_HOME/.config/starship.toml
 
 # Set the local user to be able to use sudo commands but with password prompt
 rm /etc/sudoers.d/$LOCAL_USERNAME

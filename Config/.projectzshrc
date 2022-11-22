@@ -1,4 +1,9 @@
+# Configure colors 
 export LS_COLORS="$(vivid generate iceberg-dark)"
+export GRUB_OPTIONS='--color=never'
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # use ip from iproute2 with color support
 if ip -color=auto addr show dev lo >/dev/null 2>&1; then
@@ -10,7 +15,7 @@ if [[ -r /proc/mdstat ]]; then
 fi
 
 # Colors on GNU ls(1)
-if ls --color=auto / >/dev/null 2>&1; then
+if ls --color=always / >/dev/null 2>&1; then
     ls_options+=( --color=auto )
 # Colors on FreeBSD and OSX ls(1)
 elif ls -G / >/dev/null 2>&1; then
