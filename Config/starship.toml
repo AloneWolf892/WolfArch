@@ -89,7 +89,6 @@ charging_symbol = "  "
 discharging_symbol = "  "
 unknown_symbol = "  "
 empty_symbol = "  "
-style = "bg:#3c3c3c fg:red"
 format = "[$symbol$percentage]($style)"
 
 [[battery.display]]
@@ -110,5 +109,4 @@ style = "bg:#3c3c3c fg:green"
 [[battery.display]]
 threshold = 100
 discharging_symbol = "  "
-full_symbol = "  "
 style = "bg:#3c3c3c fg:green"
