@@ -75,16 +75,6 @@ echo "127.0.1.1 $LOCAL_HOSTNAME.localdomain   $LOCAL_HOSTNAME" >> /etc/hosts
 # Variable that holds the home directory for the local user
 LOCAL_HOME=/home/$LOCAL_USERNAME
 
-# Install rust because ferris
-cd $LOCAL_HOME
-sudo -u $LOCAL_USERNAME curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > $LOCAL_HOME/rustup-init.sh 
-chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/rustup-init.sh
-sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/rustup-init.sh -y
-
-# Install prompt
-sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install vivid
-sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install starship --locked 
-
 
 # Set the current working directory for the rest of the script
 cd $LOCAL_HOME
@@ -141,6 +131,16 @@ sudo -u $LOCAL_USERNAME paru -S wine-stable wine-gecko wine-mono --noconfirm
 
 # Install a bunch of fonts so that internet browsing works properly, I don't like seeing a bunch of squares instead of actual words
 sudo -u $LOCAL_USERNAME paru -S dina-font tamsyn-font ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid gnu-free-fonts ttf-ibm-plex ttf-liberation ttf-linux-libertine noto-fonts ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family ttf-anonymous-pro ttf-cascadia-code ttf-fantasque-sans-mono ttf-fira-mono ttf-hack ttf-fira-code ttf-inconsolata ttf-jetbrains-mono ttf-monofur adobe-source-code-pro-fonts cantarell-fonts inter-font ttf-opensans gentium-plus-font ttf-junicode adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts-cjk noto-fonts-emoji --noconfirm
+
+# Install rust because ferris
+cd $LOCAL_HOME
+sudo -u $LOCAL_USERNAME curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > $LOCAL_HOME/rustup-init.sh 
+chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/rustup-init.sh
+sudo -u $LOCAL_USERNAME sh $LOCAL_HOME/rustup-init.sh -y
+
+# Install prompt
+sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install vivid
+sudo -u $LOCAL_USERNAME $LOCAL_HOME/.cargo/bin/cargo install starship --locked 
 
 # Install nvm, nodejs and npm
 cd $LOCAL_HOME
