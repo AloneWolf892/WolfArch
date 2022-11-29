@@ -27,7 +27,7 @@ format = "$symbol "
 
 [sudo]
 disabled = false
-symbol = " "
+symbol = ""
 style = "bg:#3c3c3c fg:bright-red"
 format = "[ $symbol]($style)"
 
@@ -46,9 +46,9 @@ format = '[@$hostname]($style)'
 style = "bg:#3c3c3c fg:#19cb00"
 truncation_length = 5
 truncate_to_repo = false
-read_only = ""
+read_only = " "
 read_only_style = "bg:#3c3c3c fg:#ffbb00"
-format = "[  $path]($style)[$read_only ]($read_only_style)"
+format = "[  $path]($style)[ $read_only]($read_only_style)"
 
 [git_branch]
 symbol = ""
