@@ -8,6 +8,7 @@ $hostname\
 $directory\
 $rust\
 $git_branch\
+$git_status\
 $cmd_duration\
 [](#3c3c3c) $fill [](#3c3c3c)\
 $battery\
@@ -53,7 +54,22 @@ format = "[  $path]($style)[ $read_only]($read_only_style)"
 [git_branch]
 symbol = ""
 style = "bg:#3c3c3c fg:purple"
-format = "[ $symbol $branch(:$remote_branch) ]($style)"
+format = "[ $symbol $branch·(:$remote_branch)]($style)"
+
+[git_status]
+style = "bg:#3c3c3c fg:bright-purple"
+conflicted = ""
+behind = ""
+ahead = ""
+diverged = "李"
+up_to_date = "﫠"
+untracked = ""
+modified = ""
+staged = ""
+stashed = ""
+renamed = ""
+deleted = ""
+format = '[$all_status$ahead_behind ]($style)'
 
 [time]
 disabled = false
@@ -63,7 +79,7 @@ style = 'bg:#3c3c3c fg:red'
 format = '[  $time ]($style)'
 
 [cmd_duration]
-min_time = 50
+min_time = 10
 style = "bg:#3c3c3c fg:cyan"
 format = "[ $duration ]($style)"
 
