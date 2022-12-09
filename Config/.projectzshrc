@@ -135,6 +135,11 @@ fn robocopy() {
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh             
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh                     
 
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#19cb00,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=#19cb00,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=#19cb00
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=#cc0403
+
 eval "$(starship init zsh)"
 
 # vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
