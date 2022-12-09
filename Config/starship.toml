@@ -23,19 +23,19 @@ add_newline = false
 
 [character]
 success_symbol = "[](#19cb00)"
-error_symbol = "[✗](bright-red)"
+error_symbol = "[✗](#f2201f)"
 format = "$symbol "
 
 [sudo]
 disabled = false
 symbol = ""
-style = "bg:#3c3c3c fg:bright-red"
+style = "bg:#3c3c3c fg:#f2201f"
 format = "[ $symbol]($style)"
 
 [username]
 show_always = true
 style_user = "bg:#3c3c3c fg:#ffbb00"
-style_root = "bg:#3c3c3c fg:red"
+style_root = "bg:#3c3c3c fg:#cc0403"
 format = '[ $user]($style)'
 
 [hostname]
@@ -53,11 +53,11 @@ format = "[  $path]($style)[ $read_only]($read_only_style)"
 
 [git_branch]
 symbol = ""
-style = "bg:#3c3c3c fg:purple"
+style = "bg:#3c3c3c fg:#cb1ed1"
 format = "[ $symbol $branch·(:$remote_branch)]($style)"
 
 [git_status]
-style = "bg:#3c3c3c fg:bright-purple"
+style = "bg:#3c3c3c fg:#fc28fe"
 conflicted = ""
 behind = ""
 ahead = ""
@@ -75,24 +75,24 @@ format = '[$all_status$ahead_behind ]($style)'
 disabled = false
 time_format = "%I:%M%p"
 use_12hr = true
-style = 'bg:#3c3c3c fg:red'
+style = 'bg:#3c3c3c fg:#cc0403'
 format = '[  $time ]($style)'
 
 [cmd_duration]
 min_time = 10
-style = "bg:#3c3c3c fg:cyan"
+style = "bg:#3c3c3c fg:#0dcdcd"
 format = "[ $duration ]($style)"
 
 [memory_usage]
 disabled = false
 threshold = 1
 symbol = "  "
-style = "bg:#3c3c3c fg:bright-blue"
+style = "bg:#3c3c3c fg:#1a8fff"
 format = "[$symbol$ram]($style)"
 
 [fill]
 symbol = "-"
-style = "bold cyan"
+style = "#0dcdcd"
 
 [rust]
 style = "bg:#3c3c3c fg:#ff5f00"
@@ -110,19 +110,19 @@ format = "[$symbol$percentage]($style)"
 [[battery.display]]
 threshold = 10
 discharging_symbol = "  "
-style = "bg:#3c3c3c fg:red"
+style = "bg:#3c3c3c fg:#cc0403"
 
 [[battery.display]]
 threshold = 30
 discharging_symbol = "  "
-style = "bg:#3c3c3c fg:yellow"
+style = "bg:#3c3c3c fg:#ffbb00"
 
 [[battery.display]]
 threshold = 60
 discharging_symbol = "  "
-style = "bg:#3c3c3c fg:green"
+style = "bg:#3c3c3c fg:#19cb00"
 
 [[battery.display]]
 threshold = 100
 discharging_symbol = "  "
-style = "bg:#3c3c3c fg:green"
+style = "bg:#3c3c3c fg:#19cb00"
