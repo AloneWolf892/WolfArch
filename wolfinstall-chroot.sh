@@ -152,7 +152,7 @@ sudo -u $LOCAL_USERNAME npm install -g npm@latest
 
 # Download the script on the user folder
 cd $LOCAL_HOME
-mkdir Github
+sudo -u $LOCAL_USER mkdir Github
 cd $LOCAL_HOME/Github
 sudo -u $LOCAL_USER git clone https://github.com/AloneWolf892/WolfArch
 
@@ -175,23 +175,23 @@ systemctl enable joycond
 # Create the kitty terminal config directory and copy the file from the repo
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/kitty
-ln $LOCAL_HOME/Github/WolfArch/Config/kitty.conf $LOCAL_HOME/.config/kitty/kitty.conf
+sudo -u $LOCAL_USER ln $LOCAL_HOME/Github/WolfArch/Config/kitty.conf $LOCAL_HOME/.config/kitty/kitty.conf
 mkdir /root/.config
 mkdir /root/.config/kitty
 ln $LOCAL_HOME/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
 
 # Copy the zsh configs 
-ln $LOCAL_HOME/Github/WolfArch/Config/arch_zshrc $LOCAL_HOME/.zshrc
+sudo -u $LOCAL_USER ln $LOCAL_HOME/Github/WolfArch/Config/arch_zshrc $LOCAL_HOME/.zshrc
 
 # Copy the configs for vim
 # sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/nvim
 # cp /root/WolfArch/Config/init.vim $LOCAL_HOME/.config/nvim/init.vim
 
 # Copy the configs for starship
-ln $LOCAL_HOME/Github/WolfArch/Config/starship.toml $LOCAL_HOME/.config/starship.toml
+sudo -u $LOCAL_USER ln $LOCAL_HOME/Github/WolfArch/Config/starship.toml $LOCAL_HOME/.config/starship.toml
 
 # Download the powerlevel10k plugin so the terminal is prettier
-sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
+# sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
 
 # Download and install grub theme so it looks cool
 cd $LOCAL_HOME/Downloads
