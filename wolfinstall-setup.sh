@@ -63,6 +63,10 @@ do
     break
 done
 
+# Update pacman keys
+pacman-key --init
+pacman-key --populate
+
 # Change the installer based on the processor selected
 # This installs the base OS to the selected root partition
 if [[ $proctype -eq "intel" ]]
