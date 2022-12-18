@@ -89,7 +89,7 @@ cd ..
 # Paru needs to be executed by a user and not root
 # First batch of installed apps 
 # Summary: bootloader, filesystems, networking, bluetooth, audio, virtualization
-sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant iwd dialog mtools dosfstools linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync rclone qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu firewalld man vifm --noconfirm
+sudo -u $LOCAL_USERNAME paru -S grub efibootmgr os-prober ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant iwd dialog mtools dosfstools usbutils linux-headers bluez bluez-utils pulseaudio-bluetooth cups openssh zip unzip wget curl rsync rclone qemu qemu-arch-extra virt-manager edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat xf86-video-amdgpu firewalld man vifm --noconfirm
 
 # Leave activated the virtual network for QEMU virtual machines
 virsh net-autostart default
@@ -150,12 +150,17 @@ export NVM_DIR="$LOCAL_HOME/.nvm"
 sudo -u $LOCAL_USERNAME npm install node
 sudo -u $LOCAL_USERNAME npm install -g npm@latest
 
+# Download the script on the user folder
+cd $LOCAL_HOME
+mkdir Github
+cd $LOCAL_HOME/Github
+sudo -u $LOCAL_USER git clone https://github.com/AloneWolf892/WolfArch
+
 # Install Lunar Vim
 cd $LOCAL_HOME
-cp /root/WolfArch/Config/lunarvim.sh $LOCAL_HOME/lunarvim.sh
-sudo -u $LOCAL_USER sh $LOCAL_HOME/lunarvim.sh
-ln -s $LOCAL_HOME/.local/bin/lvim /usr/bin/vim
-ln -s $LOCAL_HOME/.local/bin/lvim /usr/bin/lvim
+sudo -u $LOCAL_USER sh $LOCAL_HOME/Github/WolfArch/lunarvim.sh
+ln $LOCAL_HOME/.local/bin/lvim /usr/bin/vim
+ln $LOCAL_HOME/.local/bin/lvim /usr/bin/lvim
 
 # Basic system services enabled so they run at start
 systemctl enable NetworkManager
@@ -170,19 +175,20 @@ systemctl enable joycond
 # Create the kitty terminal config directory and copy the file from the repo
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config
 sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/kitty
-cp /root/WolfArch/Config/kitty.conf $LOCAL_HOME/.config/kitty/kitty.conf
+ln $LOCAL_HOME/Github/WolfArch/Config/kitty.conf $LOCAL_HOME/.config/kitty/kitty.conf
 mkdir /root/.config
 mkdir /root/.config/kitty
+ln $LOCAL_HOME/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
 
 # Copy the zsh configs 
-cp /root/WolfArch/Config/.projectzshrc $LOCAL_HOME/.zshrc
+ln $LOCAL_HOME/Github/WolfArch/Config/arch_zshrc $LOCAL_HOME/.zshrc
 
 # Copy the configs for vim
-sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/nvim
-cp /root/WolfArch/Config/init.vim $LOCAL_HOME/.config/nvim/init.vim
+# sudo -u $LOCAL_USERNAME mkdir $LOCAL_HOME/.config/nvim
+# cp /root/WolfArch/Config/init.vim $LOCAL_HOME/.config/nvim/init.vim
 
 # Copy the configs for starship
-cp /root/WolfArch/Config/starship.toml $LOCAL_HOME/.config/starship.toml
+ln $LOCAL_HOME/Github/WolfArch/Config/starship.toml $LOCAL_HOME/.config/starship.toml
 
 # Download the powerlevel10k plugin so the terminal is prettier
 sudo -u $LOCAL_USERNAME git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $LOCAL_HOME/powerlevel10k
@@ -211,16 +217,16 @@ echo "gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true" >>
 echo "sed -i \"/#Delete$/d\" /etc/zsh/zprofile #Delete" >> /etc/zsh/zprofile
 
 # Setting the ownership of configs to the user
-chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
-chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
-chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/nvim/init.vim
-chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/starship.toml
+# chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/kitty/kitty.conf
+# chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.zshrc
+# chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/nvim/init.vim
+# chown $LOCAL_USERNAME:$LOCAL_USERNAME $LOCAL_HOME/.config/starship.toml
 
 # Creating some symlinks so that the root user also has the cool configs enabled.
-ln -s $LOCAL_HOME/.zshrc /root/.zshrc
-ln -s $LOCAL_HOME/.config/nvim/init.vim /root/.config/nvim/init.vim
-ln -s $LOCAL_HOME/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
-ln -s $LOCAL_HOME/.config/starship.toml /root/.config/starship.toml
+ln $LOCAL_HOME/.zshrc /root/.zshrc
+# ln $LOCAL_HOME/.config/nvim/init.vim /root/.config/nvim/init.vim
+ln $LOCAL_HOME/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
+ln $LOCAL_HOME/.config/starship.toml /root/.config/starship.toml
 
 # Install the way to watch anime in the command line
 sudo -u $LOCAL_USERNAME paru -S openssl mpv aria2 ffmpeg openvpn celluloid --noconfirm
