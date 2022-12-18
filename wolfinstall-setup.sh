@@ -84,4 +84,4 @@ arch-chroot /mnt /bin/zsh $HOME/WolfArch/wolfinstall-chroot.sh
 
 # Dismount the drives and reboot
 umount -a
-reboot
+# reboot
