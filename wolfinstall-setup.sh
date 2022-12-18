@@ -12,7 +12,7 @@ timedatectl set-ntp true
 reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Install these because of utility, neofetch is cool
-pacman -Sy dialog neofetch --noconfirm
+pacman -Sy dialog neofetch archlinux-keyring --noconfirm
 
 # Cool kid
 neofetch
