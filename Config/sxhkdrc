@@ -1,0 +1,33 @@
+# 
+# wm independent hotkey
+#
+
+# make sxhkd reload it's configuration files
+super + Escape
+  pkill -USR1 -x sxhkd
+
+# Quit or Reset bspwm
+super + alt + {q,r}
+  bspc {quit,wm -r}
+
+# Terminal Emulator
+super + Return
+  kitty
+
+# Program Launcher
+super + @space
+  dmenu_run
+
+# Move between workspaces
+super + {a,d}
+  bspc desktop -f {prev,next}
+super + shift + {a,d}
+  source /home/akira/.config/bspwm/sxfunctions.sh; {move_node_desktop_prev, move_node_desktop_next}
+
+# Focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+  bspc {desktop -f, node -d} '^{1-9,10}'
+
+# Close or kill the focused node
+super + {_,shift + } q
+  bspc node -{c,k}
