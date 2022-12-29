@@ -12,7 +12,7 @@ timedatectl set-ntp true
 reflector -c Spain -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Install these because of utility, neofetch is cool
-pacman -Sy dialog neofetch --noconfirm
+pacman -Sy dialog neofetch archlinux-keyring --noconfirm
 
 # Cool kid
 neofetch
@@ -63,6 +63,10 @@ do
     break
 done
 
+# Update pacman keys
+pacman-key --init
+pacman-key --populate
+
 # Change the installer based on the processor selected
 # This installs the base OS to the selected root partition
 if [[ $proctype -eq "intel" ]]
@@ -84,4 +88,4 @@ arch-chroot /mnt /bin/zsh $HOME/WolfArch/wolfinstall-chroot.sh
 
 # Dismount the drives and reboot
 umount -a
-reboot
+# reboot
