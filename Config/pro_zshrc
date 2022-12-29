@@ -122,9 +122,9 @@ bindkey '\e[B' history-search-forward
 
 fn vim() {
   if [[ $@ == . ]]; then
-    command ~/.local/bin/lvim +Texplore
+      /usr/bin/vim +Texplore
   else
-    command ~/.local/bin/lvim $@
+      /usr/bin/vim $@
   fi
 }
 
