@@ -17,8 +17,11 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-#Initialize picom
+# Initialize picom
 picom &
 
-#Initialize polybar
+# Initialize polybar
 polybar &
+
+# Initialize wallpaper engine
+feh --bg-fill /home/akira/Pictures/Wallpapers/wallpaper_01.jpg
