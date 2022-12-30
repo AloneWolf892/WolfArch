@@ -24,4 +24,4 @@ picom &
 polybar &
 
 # Initialize wallpaper engine
-feh --bg-fill /home/akira/Pictures/Wallpapers/wallpaper_01.jpg
+feh --bg-fill /home/akira/Pictures/Wallpapers/wallpaper_01.jpg &
