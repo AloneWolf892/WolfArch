@@ -132,6 +132,10 @@ fn robocopy() {
     command rclone copy $@ --progress --update --multi-thread-streams $CPU_THREADS
 }
 
+fn lsports() {
+    sudo lsof -i -P -n | grep LISTEN
+}
+
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh             
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh                     
 
