@@ -58,12 +58,12 @@ format = "[ $symbol $branch·(:$remote_branch)]($style)"
 
 [git_status]
 style = "bg:#3c3c3c fg:#fc28fe"
-conflicted = ""
+conflicted = ""
 behind = ""
 ahead = ""
-diverged = "李"
-up_to_date = "﫠"
-untracked = ""
+diverged = ""
+up_to_date = "󰅠"
+untracked = ""
 modified = ""
 staged = ""
 stashed = ""
@@ -100,29 +100,29 @@ symbol = "🦀"
 format = "[$symbol$version ]($style)"
 
 [battery]
-full_symbol = "  "
-charging_symbol = "  "
-discharging_symbol = "  "
-unknown_symbol = "  "
-empty_symbol = "  "
+full_symbol = " 󰁹 "
+charging_symbol = " 󰂄 "
+discharging_symbol = " 󱟥 "
+unknown_symbol = " 󱟩 "
+empty_symbol = " 󱃍 "
 format = "[$symbol$percentage]($style)"
 
 [[battery.display]]
 threshold = 10
-discharging_symbol = "  "
+discharging_symbol = " 󰁺 "
 style = "bg:#3c3c3c fg:#cc0403"
 
 [[battery.display]]
 threshold = 30
-discharging_symbol = "  "
+discharging_symbol = " 󰁼 "
 style = "bg:#3c3c3c fg:#ffbb00"
 
 [[battery.display]]
 threshold = 60
-discharging_symbol = "  "
+discharging_symbol = " 󰁿 "
 style = "bg:#3c3c3c fg:#19cb00"
 
 [[battery.display]]
 threshold = 100
-discharging_symbol = "  "
+discharging_symbol = " 󰁹 "
 style = "bg:#3c3c3c fg:#19cb00"
