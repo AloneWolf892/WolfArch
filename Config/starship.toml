@@ -23,7 +23,7 @@ add_newline = false
 
 [character]
 success_symbol = "[](#19cb00)"
-error_symbol = "[󱐋](#f2201f)"
+error_symbol = "[](#f2201f)"
 format = "$symbol "
 
 [sudo]
@@ -86,7 +86,7 @@ format = "[ $duration ]($style)"
 [memory_usage]
 disabled = false
 threshold = 1
-symbol = " 󱐋 "
+symbol = " 󰍛 "
 style = "bg:#3c3c3c fg:#1a8fff"
 format = "[$symbol$ram]($style)"
 
